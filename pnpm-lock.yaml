@@ -17,9 +17,6 @@ importers:
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
-      mailtrap:
-        specifier: ^4.3.2
-        version: 4.3.2(nodemailer@7.0.11)
       nodemailer:
         specifier: ^7.0.11
         version: 7.0.11
@@ -287,18 +284,6 @@ packages:
 
   json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
-
-  mailtrap@4.3.2:
-    resolution: {integrity: sha512-RNzd5KU5ITn1Se6+KW3pIJnBvh8CVUJuidCEKPTDl8GZbpo6y4GtwGwCxN9xLZclSmMQFRt0G1yG0FoU/KgiWQ==}
-    engines: {node: '>=16.20.1', yarn: '>=1.22.17'}
-    peerDependencies:
-      '@types/nodemailer': ^6.4.9
-      nodemailer: ^6.9.4
-    peerDependenciesMeta:
-      '@types/nodemailer':
-        optional: true
-      nodemailer:
-        optional: true
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -848,14 +833,6 @@ snapshots:
 
   json-schema-traverse@1.0.0:
     optional: true
-
-  mailtrap@4.3.2(nodemailer@7.0.11):
-    dependencies:
-      axios: 1.13.2
-    optionalDependencies:
-      nodemailer: 7.0.11
-    transitivePeerDependencies:
-      - debug
 
   math-intrinsics@1.1.0: {}
 

@@ -16,7 +16,6 @@
     "@openai/agents": "^0.3.3",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
-    "mailtrap": "^4.3.2",
     "nodemailer": "^7.0.11",
     "zod": "^3.25.76"
   }

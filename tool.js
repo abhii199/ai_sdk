@@ -4,8 +4,13 @@ import { config } from 'dotenv';
 import Nodemailer from 'nodemailer';
 import { z } from 'zod';
 
-
 config();
+
+const getWeatherResultSchema = z.object({
+    city: z.string().describe('name of the city'),
+    condition: z.string().describe('current weather description'),
+    degree_c: z.string().describe('current temperature'),
+})
 
 const getWeatherTool = tool({
     name: 'get_weather',
@@ -41,7 +46,7 @@ const sendMail = tool({
 
         });
         
-        await transport
+        return transport
             .sendMail({
                 from: process.env.MAILTRAP_USER,
                 to: toEmail,
@@ -74,7 +79,8 @@ const agent = new Agent({
     name: 'weatherAgent',
     instructions: 'You are a weather and time zone expert that helps user to get real time weather data along with time zone comparison with Delhi, India.',
     model: 'gpt-5-nano',
-    tools: [getWeatherTool, sendMail]
+    tools: [getWeatherTool, sendMail],
+    outputType: getWeatherResultSchema
 })
 
 async function main(query = '') {
@@ -82,4 +88,4 @@ async function main(query = '') {
     console.log(result.finalOutput)
 }
 
-main(`Send email to this',abhi199works@gmail.com', 'Meeting Reminder', 'This is a reminder for our meeting scheduled tomorrow at 10 AM. also if it fails inform me.`)
+main(`What's the current weather in New York? Please send me an email at abhi@gmail.com`)
