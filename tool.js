@@ -35,6 +35,7 @@ const sendMail = tool({
         body: z.string().describe('conntent of the email')
     }),
     execute: async function ({ toEmail, subject, body }) {
+        console.log('Mail tool called');
         const transport = Nodemailer.createTransport({
             host: process.env.MAILTRAP_HOST,
             port: process.env.MAILTRAP_PORT,
