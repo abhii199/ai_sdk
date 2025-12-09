@@ -4,14 +4,16 @@ import { z } from 'zod'
 
 config();
 
+let sharedHistory = []; 
+
 const executeSql = tool({
     name: 'execute_sql',
     description: 'This executes the Sql query',
     parameters: z.object({
         sql: z.string().describe('the sql query')
     }),
-    execute: async ({AgentOutput}) => {
-        console.log(`SQL executed: ${AgentOutput}`)
+    execute: async ({sql}) => {
+        console.log(`SQL executed: ${sql}`)
         return 'done'
     }
 })
@@ -37,9 +39,22 @@ const sqlAgent = new Agent({
     model: 'gpt-5-nano'
 })
 
+// async function main(q) {
+//     sharedHistory = sharedHistory.concat({role: 'user', content: q ?? ''})
+//     const result = await run(sqlAgent, sharedHistory)
+//     sharedHistory = sharedHistory.concat(result.history)
+//     console.log(result.finalOutput)
+// }
+
 async function main(q) {
-    const result = await run(sqlAgent, q)
+    sharedHistory.push({role: 'user', content: q ?? ''})
+    const result = await run(sqlAgent, sharedHistory)
+    sharedHistory = result.history
     console.log(result.finalOutput)
 }
 
-main('Give me all users')
+//Turn 1
+main('Give me all users and my name is Abhi').then(()=> {
+    //Turn 2
+    main('Give me all users same as my name')
+})
